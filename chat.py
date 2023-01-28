@@ -25,10 +25,10 @@ _, l_v_frame = cv.imencode('.jpg', l_v_frame)
 l_a_frame = ()
 r_v_frame = l_v_frame
 r_a_frame = ()
-network_dspee = {'v': 0, 'a': 0}
+network_speed = {'v': 0, 'a': 0}
 
 def stream_send():
-    global run, network_dspee
+    global run, network_speed
     while len(l_a_frame) == 0:
         sleep(0.5)
 
@@ -43,8 +43,8 @@ def stream_send():
             sock.sendall(header)
             sock.sendall(v_buff)
             sock.sendall(a_buff)
-            network_dspee['v']+= v_buff_sz
-            network_dspee['a']+= a_buff_sz            
+            network_speed['v']+= v_buff_sz
+            network_speed['a']+= a_buff_sz            
         except ConnectionAbortedError:
             run = False
         except ConnectionResetError:
