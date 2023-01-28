@@ -104,14 +104,14 @@ def stream_audio():
             sleep(0.010)
 
 def fps():
-    global i_fps, network_dspee
+    global i_fps, network_speed
     while run:
-        v_speed = int(network_dspee['v']/1024)
-        a_speed = int(network_dspee['a']/1024)
+        v_speed = int(network_speed['v']/1024)
+        a_speed = int(network_speed['a']/1024)
         print(f'FPS: {i_fps} | Net: (V: {v_speed}kB/s, A: {a_speed}kB/s)')
         i_fps = 0
-        network_dspee['a'] = 0
-        network_dspee['v'] = 0
+        network_speed['a'] = 0
+        network_speed['v'] = 0
         sleep(1)
 
 th_video    = threading.Thread(target=stream_video)
